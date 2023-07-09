@@ -1,5 +1,7 @@
 export function UserList() {
     return(
-        <div></div>
+        <div>
+            <h1>UserList</h1>
+        </div>
     );
 }
