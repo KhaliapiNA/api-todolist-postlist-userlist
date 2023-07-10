@@ -1,9 +1,9 @@
 import './App.css';
 import {Routes, Route, Link} from "react-router-dom";
 import {HeaderNavigation} from "../shared/components/Header-navigation/Header-navigation";
-import {PostList} from "../shared/components/PostsList/PostList";
-import {TodoList} from "../shared/components/TodoList/TodoList";
-import {UserList} from "../shared/components/UserList/UserList";
+import {PostList} from "../features/PostsList/PostList";
+import {TodoList} from "../features/TodoList/TodoList";
+import {UserList} from "../features/UserList/UserList";
 
 function App() {
     return (
