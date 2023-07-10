@@ -1,6 +1,7 @@
+import './PostList.css';
 export function PostList() {
     return (
-        <div>
+        <div className={"post-list"}>
             <h1>Post</h1>
             <p>
                 Urahara grew up in the Seireitei, the estate of the Shihōin family, along with childhood friends

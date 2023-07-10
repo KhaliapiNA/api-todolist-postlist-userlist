@@ -4,9 +4,11 @@ import './Header-navigation.css';
 export function HeaderNavigation() {
     return (
         <header>
-            <Link to={"/postlist"} className="header-buttons">PostList</Link>
-            <Link to={"/todolist"} className="header-buttons">TodoList</Link>
-            <Link to={"/userlist"} className="header-buttons">UserList</Link>
+            <div className={"header-buttons"}>
+            <Link to={"/postlist"} className="header-button">PostList</Link>
+            <Link to={"/todolist"} className="header-button">TodoList</Link>
+            <Link to={"/userlist"} className="header-button">UserList</Link>
+        </div>
         </header>
     );
 }
