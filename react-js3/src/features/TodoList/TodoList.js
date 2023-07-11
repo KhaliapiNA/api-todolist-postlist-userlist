@@ -1,16 +1,13 @@
-import {useDispatch, useSelector} from "react-redux";
-import {fetchTodos} from "../../redux/slice/todo";
+import {useSelector} from "react-redux";
 import "./TodoList.css"
+
 export function TodoList(props) {
-    const dispatch = useDispatch();
     const state = useSelector((state) => state)
-    console.log("State", state)
-    return(
+    return (
         <div>
             <h1>TodoList</h1>
-            <div>
-
-                {/*{state.todo.map()}*/}
+            <div className={"todo-list"}>
+                {!state.todo.data ? null :state.todo.data.map((e) => <li><input type={"radio"} checked={e.completed} className={"radio"}/>{e.title}</li>)}
             </div>
         </div>
     );
