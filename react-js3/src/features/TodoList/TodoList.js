@@ -7,7 +7,10 @@ export function TodoList(props) {
         <div>
             <h1>TodoList</h1>
             <div className={"todo-list"}>
-                {!state.todo.data ? null :state.todo.data.map((e) => <li><input type={"radio"} checked={e.completed} className={"radio"}/>{e.title}</li>)}
+                {!state.todo.data ? null :state.todo.data.map((e) =>
+                    <li>
+                        <input type={"radio"} checked={e.completed} className={"radio"}/>{e.title}
+                    </li>)}
             </div>
         </div>
     );
