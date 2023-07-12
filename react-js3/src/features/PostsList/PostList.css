@@ -1,38 +1,56 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100&family=Playfair+Display&display=swap');
 
-.post-list {
+.post-list-page {
     max-width: 1200px;
     width: 100%;
     display: flex;
     flex-direction: column;
-    margin: 0 auto;
+    margin: 15px auto;
 }
 
-p, h1 {
+p, h1, span {
     font-family: 'Montserrat', sans-serif;
     font-style: normal;
     font-weight: 600;
     line-height: 17px;
 }
 
-p, label {
+.post-list {
+    border: 2px solid;
+
+}
+
+p {
     text-align: left;
+    padding: 15px;
+    width: 95%;
+    display: flex;
 }
 
 .posts {
-    display: grid;
-    grid-template-areas: "userId title" "text text";
-    border: 2px solid;
-    max-width: 1000px;
-    width: 100%;
+
+    display: flex;
+    flex-direction: column;
 }
 
-label {
-    grid-area: userId;
+.flex {
+    border-bottom: 1px solid;
+    border-top: 1px solid;
+    display: flex;
+    flex-direction: row;
 }
-.post-body {
-    grid-area: text;
+
+.user-id-box, .post-title-box, .text-body-box {
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+    padding-left: 15px;
 }
-.post-title{
-    grid-area: title;
+
+.user-id-box {
+    border-right: 1px solid;
+    max-width: 200px;
+}
+span{
+    font-size: 19px;
 }
