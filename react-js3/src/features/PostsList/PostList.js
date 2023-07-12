@@ -9,8 +9,8 @@ export function PostList() {
                 {!state.post.data ? null : state.post.data.map((e) =>
                     <div className={"posts"}>
                         <label>UserId: {e.userId}</label>
-                        <p>Title: {e.title}</p>
-                        <p>Text: {e.body}</p>
+                        <p className={"post-title"}>Title: {e.title}</p>
+                        <p class={"post-body"}>Text: {e.body}</p>
                     </div>)}
         </div>
     );
