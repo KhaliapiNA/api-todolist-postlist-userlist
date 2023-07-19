@@ -8,7 +8,7 @@ export const fetchTodos = createAsyncThunk('fetchTodos', async () => {
 const todoSlice = createSlice({
     name: 'todo',
     initialState: {
-        data: "",
+        data: null,
         isError: false
     },
     extraReducers: (builder) => {

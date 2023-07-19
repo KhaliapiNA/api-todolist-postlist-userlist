@@ -6,8 +6,9 @@ export function PostList() {
     return (
         <div className={"post-list-page"}>
             <h1>Post</h1>
-            <div className={"post-list"}>
-                {!state.post.data ? null : state.post.data.map((e) =>
+
+            {!state.post.data ? null : state.post.data.map((e) =>
+                <div className={"post-list"}>
                     <div className={"posts"}>
                         <div className={"flex"}>
                             <div className={"user-id-box"}>
@@ -23,8 +24,8 @@ export function PostList() {
                             <span>Text: </span>
                             <p class={"post-body"}> {e.body}</p>
                         </div>
-                    </div>)}
-            </div>
+                    </div>
+                </div>)}
         </div>
     );
 }
