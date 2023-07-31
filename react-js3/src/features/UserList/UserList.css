@@ -1,0 +1,16 @@
+.user-list{
+    margin-bottom: 15px;
+    margin-top: 15px;
+}
+.user-list-box{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    border: 1px solid;
+
+}
+.user-list-name{
+    border-right: 1px solid;
+}
