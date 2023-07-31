@@ -5,7 +5,7 @@ export function TodoList() {
     const [data, setData] = useState([]);
     useEffect(() => {
         axios.get('https://jsonplaceholder.typicode.com/todos')
-            .then(res => console.log(setData(res.data)))
+            .then(res => setData(res.data))
             .catch(err => console.log(err));
     }, [])
     return (

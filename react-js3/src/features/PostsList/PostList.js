@@ -5,7 +5,7 @@ export function PostList() {
     const [data, setData] = useState([]);
     useEffect(() => {
         axios.get('https://jsonplaceholder.typicode.com/posts')
-            .then(res => console.log(setData(res.data)))
+            .then(res => setData(res.data))
             .catch(err => console.log(err));
     }, [])
     return (
