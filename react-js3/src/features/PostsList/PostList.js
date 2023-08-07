@@ -33,4 +33,5 @@ export function PostList() {
                 </div>)}
         </div>
     );
+
 }
