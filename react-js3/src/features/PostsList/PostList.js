@@ -13,7 +13,7 @@ export function PostList() {
         <div className={"post-list-page"}>
             <h1>Post</h1>
                 <div className={"post-list"}>
-                    {state.post.data.map((e) =>
+                    {!state.post.data ? null :state.post.data.map((e) =>
                         <div className={"posts"}>
                             <div className={"flex"}>
                                 <div className={"user-id-box"}>
