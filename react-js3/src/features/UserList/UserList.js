@@ -1,7 +1,7 @@
 import "./UserList.css"
 import {useDispatch, useSelector} from "react-redux";
 import React, {useEffect} from 'react';
-import {fetchUsers} from "../../redux/slice/userlist";
+import {fetchUsers} from "../../moduls/slice/userlist";
 
 export function UserList() {
     const dispatch = useDispatch();

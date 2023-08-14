@@ -1,7 +1,7 @@
 import './PostList.css';
 import {useDispatch, useSelector} from "react-redux";
 import React, {useEffect} from 'react';
-import {fetchPosts} from "../../redux/slice/postlist";
+import {fetchPosts} from "../../moduls/slice/postlist";
 
 export function PostList() {
     const dispatch = useDispatch();
