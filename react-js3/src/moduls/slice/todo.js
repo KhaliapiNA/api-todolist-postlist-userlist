@@ -28,6 +28,13 @@ const todoSlice = createSlice({
             console.log("Error", action.payload);
             state.isError = true;
         })
+    },
+    toggleComplete: (state, action) => {
+        const index = state.findIndex(
+            (todo) => todo.userId === action.payload.userId
+        );
+        state[index].completed = action.playload.completed;
     }
 });
+export const {toggleComplete} = todoSlice.actions;
 export default todoSlice.reducer;

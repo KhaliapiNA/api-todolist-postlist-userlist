@@ -32,7 +32,10 @@ export function TodoList(props) {
             <div className={"todo-list"}>
                 {!state.todo.data ? null : state.todo.data.map((e) =>
                     <li>
-                        <input key={e.userId} type={"radio"} checked={handleUpdate(e.userId, '')} className={"radio"}/>{e.title}
+                        <input key={e.userId} type={"radio"}
+                               checked={e.completed}
+                               className={"radio"}/>
+                        {e.title}
                     </li>)}
             </div>
         </div>
