@@ -33,7 +33,7 @@ const todoSlice = createSlice({
         const index = state.findIndex(
             (todo) => todo.userId === action.payload.userId
         );
-        state[index].completed = action.playload.completed;
+        state[index].completed = action.payload.completed;
     }
 });
 export const {toggleComplete} = todoSlice.actions;
