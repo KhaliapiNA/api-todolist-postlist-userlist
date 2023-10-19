@@ -14,17 +14,17 @@ export function TodoList(props) {
         });
     }, [dispatch]);
     const handleCheckboxChange = async (id, completed) => {
-        try {
-            await updateCheckbox(id, completed);
-
-            setData((prevCheckboxes) =>
-                prevCheckboxes.map((checkbox) =>
-                    checkbox.userId === id ? { ...checkbox,  completed} : checkbox
-                )
-            );
-        } catch (error) {
+            setData((prevCheckboxes) => {
+                if (Array.isArray(prevCheckboxes)) {
+                    return prevCheckboxes.map((checkbox) =>
+                        checkbox.id === id ? {...checkbox, completed} : checkbox
+                    );
+                } else {
+                    // Вернуть предыдущее состояние или другое значение по умолчанию
+                    return prevCheckboxes;
+                }
+            });
         }
-    };
     return (
         <div>
             <h1>TodoList</h1>

@@ -4,13 +4,13 @@ export const fetchTodos = createAsyncThunk('fetchTodos', async () => {
     const response = await fetch('https://jsonplaceholder.typicode.com/todos');
     return response.json();
 });
-export const updateCheckbox = async (id, checked) => {
-    const response = await fetch(`https://api.example.com/updateCheckbox/${id}`, {
+export const updateCheckbox = async (id, completed) => {
+    const response = await fetch(`https://jsonplaceholder.typicode.com/todos/${id}`, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ checked }),
+        body: JSON.stringify({ completed }),
     });
     if (!response.ok) {
         throw new Error('Network response was not ok');
