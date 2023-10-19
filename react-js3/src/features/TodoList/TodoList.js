@@ -20,7 +20,6 @@ export function TodoList(props) {
                         checkbox.id === id ? {...checkbox, completed} : checkbox
                     );
                 } else {
-                    // Вернуть предыдущее состояние или другое значение по умолчанию
                     return prevCheckboxes;
                 }
             });
