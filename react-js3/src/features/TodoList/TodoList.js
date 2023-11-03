@@ -13,27 +13,19 @@ export function TodoList(props) {
             setData(jsonData);
         });
     }, [dispatch]);
-    const handleCheckboxChange = async (id, completed) => {
-            setData((prevCheckboxes) => {
-                if (Array.isArray(prevCheckboxes)) {
-                    return prevCheckboxes.map((checkbox) =>
-                        checkbox.id === id ? {...checkbox, completed} : checkbox
-                    );
-                } else {
-                    return prevCheckboxes;
-                }
-            });
-        }
+    const  handleCompleteClick = ()=>{
+        dispatch(
+            toggleComplete({userId: state.todo.userId, completed: !state.todo.completed})
+        );
+    };
     return (
         <div>
             <h1>TodoList</h1>
             <div className={"todo-list"}>
                 {!state.todo.data ? null : state.todo.data.map((e) =>
                     <li>
-                        <input key={e.userId} type={"checkbox"}
-
-                               checked={e.completed}
-                               onChange={(event) => handleCheckboxChange(e.userId, event.target.checked)}
+                        <input key={e.userId} type={"radio"}
+                               onChange={()=>handleCompleteClick}
                                className={"radio"}/>
                         {e.title}
                     </li>)}
