@@ -4,15 +4,18 @@ export const fetchTodos = createAsyncThunk('fetchTodos', async () => {
     const response = await fetch('https://jsonplaceholder.typicode.com/todos');
     return response.json();
 });
-export const updateData = async (id, newCompleted) => {
-    const response = await fetch(`https://jsonplaceholder.typicode.com/todos/${id}`, {
+export const updateCheckbox = async (userId, completed) => {
+    const response = await fetch(`https://jsonplaceholder.typicode.com/todos/${userId}`, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify({completed: newCompleted}),
+        body: JSON.stringify({ completed }),
     });
-}
+    if (!response.ok) {
+        throw new Error('Network response was not ok');
+    }
+};
 const todoSlice = createSlice({
     name: 'todo',
     initialState: {
@@ -28,6 +31,8 @@ const todoSlice = createSlice({
             console.log("Error", action.payload);
             state.isError = true;
         })
-    }
+    },
+
 });
+
 export default todoSlice.reducer;
