@@ -1,9 +1,9 @@
 import {useDispatch, useSelector} from "react-redux";
 import "./TodoList.css"
-import React, {useState, useEffect} from 'react';
-import todo, {fetchTodos, updateData} from "../../moduls/slice/todo.js";
+import {useState, useEffect} from 'react';
+import {todo, fetchTodos} from "../../moduls/slice/todo.js";
 
-export function TodoList(props) {
+export function TodoList(props: any) {
     const [data, setData] = useState([]);
     const dispatch = useDispatch();
     const state = useSelector((state) => state)
