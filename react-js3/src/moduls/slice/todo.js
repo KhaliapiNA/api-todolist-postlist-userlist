@@ -12,10 +12,7 @@ export const updateCheckbox = async (userId, completed) => {
         },
         body: JSON.stringify({ completed }),
     });
-    if (!response.ok) {
-        throw new Error('Network response was not ok');
-    }
-};
+}
 const todoSlice = createSlice({
     name: 'todo',
     initialState: {
@@ -32,6 +29,12 @@ const todoSlice = createSlice({
             state.isError = true;
         })
     },
+    toggleComplete: (state, action) => {
+        const index = state.findIndex(
+            (todo) => todo.userId === action.payload.userId
+        );
+        state[index].completed = action.payload.completed;
+    }
 
 });
 

@@ -15,9 +15,10 @@ export function TodoList(props) {
     function changeStatus(dataId, isDone) {
         let d = data.find(e => e.id === dataId);
         if (d) {
-            d.isDone = !d.isDone;
+            d.isDone = isDone;
         }
-        setData([]);
+        setData([...data]);
+
     }
 
     return (
