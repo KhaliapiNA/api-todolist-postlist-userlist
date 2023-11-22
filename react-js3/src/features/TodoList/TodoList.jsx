@@ -3,7 +3,7 @@ import "./TodoList.css"
 import {useState, useEffect} from 'react';
 import {todo, fetchTodos} from "../../moduls/slice/todo.js";
 
-export function TodoList(props: any) {
+export function TodoList(props) {
     const [data, setData] = useState([]);
     const dispatch = useDispatch();
     const state = useSelector((state) => state)
@@ -11,21 +11,30 @@ export function TodoList(props: any) {
         dispatch(fetchTodos(),
             [dispatch])
     });
-    const toggleComplete = id => {
-        setData(data.map(e => e.id === id ? {e, completed: !e.completed} : e))
+
+    function changeStatus(dataId, isDone) {
+        let d = data.find(e => e.id === dataId);
+        if (d) {
+            d.isDone = !d.isDone;
+        }
+        setData([]);
     }
+
     return (
         <div>
             <h1>TodoList</h1>
             <div className={"todo-list"}>
                 {!state.todo.data ? null : state.todo.data.map((e) =>
-                    <li>
-                        <input key={e.id} type={"radio"}
+                    <li key={e.id}>
+                        <input type={"checkbox"}
                                checked={e.completed}
-                               onChange={() => toggleComplete(e.id)}
-                               className={"radio"}/>{e.title}
-                    </li>)}
+                               onChange={(event) => changeStatus(e.id, event.currentTarget.checked)}
+                               className={"radio"}/>
+                        {e.title}
+                    </li>
+                )}
             </div>
         </div>
-    );
+    )
+        ;
 }
