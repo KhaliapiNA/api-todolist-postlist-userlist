@@ -1,72 +1,42 @@
 import {useDispatch, useSelector} from "react-redux";
 import "./TodoList.css"
-import React, {useState, useEffect} from 'react';
-import {fetchTodos, toggleComplete} from "../../moduls/slice/todo.js";
-
+import {useState, useEffect} from 'react';
+import {fetchTodos} from "../../moduls/slice/todo.js";
+import {store} from "../../moduls/store";
 export function TodoList(props) {
     const [data, setData] = useState([]);
     const dispatch = useDispatch();
     const state = useSelector((state) => state)
     useEffect(() => {
-        dispatch(fetchTodos())
-            .then(jsonData => {
-            setData(jsonData);
-        });
-    }, [dispatch]);
-    const  handleCompleteClick = ()=>{
-        dispatch(
-            toggleComplete({userId: state.todo.userId, completed: !state.todo.completed})
-        );
-    };
-    return (
-import {useDispatch, useSelector} from "react-redux";
-import "./TodoList.css"
-import React, {useState, useEffect} from 'react';
-import {fetchTodos,updateCheckbox} from "../../moduls/slice/todo.js";
+        dispatch(fetchTodos(),
+            [dispatch])
+    });
 
-export function TodoList(props) {
-    const [data, setData] = useState([]);
-    const dispatch = useDispatch();
-    const state = useSelector((state) => state)
-    useEffect(() => {
-        dispatch(fetchTodos())
-            .then(jsonData => {
-            setData(jsonData);
-        });
-    }, [dispatch]);
-    const handleCheckboxChange = async (id, completed) => {
-            setData((prevCheckboxes) => {
-                if (Array.isArray(prevCheckboxes)) {
-                    return prevCheckboxes.map((checkbox) =>
-                        checkbox.id === id ? {...checkbox, completed} : checkbox
-                    );
-                } else {
-                    return prevCheckboxes;
-                }
-            });
+
+
+    function changeStatus(dataId, isDone) {
+        let d = data.find(e => e.id === dataId);
+        if (d) {
+            d.isDone = isDone;
         }
+        console.log()
+        setData([...data]);
+    }
+
     return (
         <div>
             <h1>TodoList</h1>
             <div className={"todo-list"}>
-                {!state.todo.data ? null : state.todo.data.map((e) =>
-                    <li>
-                        <input key={e.userId} type={"checkbox"}
-
-                               checked={e.completed}
-                               onChange={(event) => handleCheckboxChange(e.userId, event.target.checked)}
-                               className={"radio"}/>
-                        {e.title}
-                    </li>)}
-            </div>
-            <div className={"todo-list"}>
-                {!state.todo.data ? null : state.todo.data.map((e) =>
-                    <li>
-                        <input key={e.userId} type={"radio"}
-                               onChange={()=>handleCompleteClick}
-                               className={"radio"}/>
-                        {e.title}
-                    </li>)}
+                {!state.todo.data ? null : state.todo.data.map((e) => {
+                        return (<li key={e.id}>
+                            <input type={"checkbox"}
+                                   checked={e.completed}
+                                   onChange={(event) => changeStatus(e.id, event.currentTarget.checked)}
+                                   className={"radio"}/>
+                            {e.title}
+                        </li>)
+                    }
+                )}
             </div>
         </div>
     );

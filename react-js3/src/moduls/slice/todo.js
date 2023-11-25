@@ -4,15 +4,7 @@ export const fetchTodos = createAsyncThunk('fetchTodos', async () => {
     const response = await fetch('https://jsonplaceholder.typicode.com/todos');
     return response.json();
 });
-export const updateCheckbox = async (userId, completed) => {
-    const response = await fetch(`https://jsonplaceholder.typicode.com/todos/${userId}`, {
-        method: 'PUT',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ completed }),
-    });
-}
+
 const todoSlice = createSlice({
     name: 'todo',
     initialState: {
@@ -29,12 +21,6 @@ const todoSlice = createSlice({
             state.isError = true;
         })
     },
-    toggleComplete: (state, action) => {
-        const index = state.findIndex(
-            (todo) => todo.userId === action.payload.userId
-        );
-        state[index].completed = action.payload.completed;
-    }
 
 });
 
