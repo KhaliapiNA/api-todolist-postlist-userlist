@@ -5,7 +5,7 @@ export const fetchTodos = createAsyncThunk('fetchTodos', async () => {
     return response.json();
 });
 
-const todoSlice = createSlice({
+export const todoSlice = createSlice({
     name: 'todo',
     initialState: {
         data: null,
@@ -15,13 +15,21 @@ const todoSlice = createSlice({
 
         builder.addCase(fetchTodos.fulfilled, (state, action) => {
             state.data = action.payload;
+
         });
+
         builder.addCase(fetchTodos.rejected, (state, action) => {
             console.log("Error", action.payload);
             state.isError = true;
         })
     },
+    /*changeStatus: (state, dataId, isDone) => {
 
+        let d = state.data.find(e => e.id === dataId);
+        if (d) {
+            d.isDone = isDone;
+        }
+    }*/
 });
 
 export default todoSlice.reducer;
