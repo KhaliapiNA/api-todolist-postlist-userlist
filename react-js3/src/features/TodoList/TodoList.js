@@ -18,7 +18,7 @@ export function TodoList(props) {
             }
         };
         fetchData()
-    }, [dispatch]);
+    }, []);
 
     function changeStatus(taskId, taskCompleted) {
         let task = tasksState.find(e => e.id === taskId);
