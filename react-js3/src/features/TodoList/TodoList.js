@@ -4,15 +4,12 @@ import {useState, useEffect} from 'react';
 import todo, {fetchTodos} from "../../moduls/slice/todo.js";
 
 export function TodoList(props) {
-    const [isChecked, setIsChecked] = useState(false);
-
-    const handleCheckboxChange = () => {
-        setIsChecked(!isChecked); // Toggle the checked state
-    };
     const [tasks, setTasks] = useState([]);
+    const tasksState = tasks.payload;
     const dispatch = useDispatch();
     const state = useSelector((state) => state)
-console.log(tasks)
+    console.log(tasksState)
+
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -22,48 +19,42 @@ console.log(tasks)
                 console.log("error: ", error)
             }
         };
-        fetchData();
+        fetchData()
     }, [dispatch]);
 
-    /*useEffect(() => {
-        dispatch(fetchTodos())
-    }, [dispatch]);*/
-
-       function changeStatus(taskId) {
-           let task = tasks.payload.find(e => e.id === taskId);
-           if (task) {
-               task.completed = !task.completed;
-           }
-           setTasks([...tasks]);
-
-       }
+    function changeStatus(taskId, taskCompleted) {
+        let task = tasksState.find(e => e.id === taskId);
+        // if (task) {
+        //task.completed === !taskCompleted;
+        //}
+        //([...tasksState]);
 
 
+    }
 
     const handleCompleteClick = () => {
-        /* dispatch(setTasks({
-                 id: state.todo.id,
-                 completed: !state.todo.completed
-             })
-         );*/
-        console.log(tasks.payload)
+        setTasks(
+            Object.defineProperties(...tasksState,
+                {
+                    userId: state.todo.userId,
+                    completed: !state.todo.completed
+                })
+        );
     };
-
-
     return (
         <div>
             <h1>TodoList</h1>
             <div className={"todo-list"}>
-                {!tasks.payload ? null : tasks.payload.map((e) => {
-                        /*const handlerOnChange = (event) => {
-                            changeStatus(e.id, event.currentTarget.completed)
-                            //console.log(e.id, event.currentTarget.completed)
-                        }*/
+                {!tasksState ? null : tasksState.map((e) => {
+                        const handlerOnChange = (event) => {
+                            changeStatus(e.id, !event.currentTarget.checked)
+
+                        }
                         return (
                             <li key={e.id}>
                                 <input type={"checkbox"}
                                        checked={e.completed}
-                                       onChange={handleCheckboxChange}
+                                       onChange={handleCompleteClick}
                                        className={"radio"}/>
                                 {e.title}
                             </li>)
