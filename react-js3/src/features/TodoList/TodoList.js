@@ -19,7 +19,6 @@ export function TodoList(props) {
                 console.log("error: ", error)
             }
         };
-        fetchData()
     }, [dispatch]);
 
     function changeStatus(taskId, taskCompleted) {
@@ -36,8 +35,8 @@ export function TodoList(props) {
         setTasks(
             Object.defineProperties(...tasksState,
                 {
-                    userId: state.todo.userId,
-                    completed: !state.todo.completed
+                    id: tasksState.id,
+                    completed: !tasksState.completed
                 })
         );
     };
