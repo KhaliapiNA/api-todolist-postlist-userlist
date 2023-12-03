@@ -27,7 +27,7 @@ export function PostList() {
                             </div>
                             <div className={"text-body-box"}>
                                 <span>Text: </span>
-                                <p key={e.id} class={"post-body"}> {e.body}</p>
+                                <p key={e.id} className={"post-body"}> {e.body}</p>
                             </div>
                         </div>)}
                 </div>

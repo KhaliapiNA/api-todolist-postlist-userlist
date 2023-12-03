@@ -7,7 +7,6 @@ export function TodoList(props) {
     const dispatch = useDispatch();
     const [tasks, setTasks] = useState([]);
     const todo = useSelector(state => state.todo)
-
     useEffect(() => {
         dispatch(fetchTodos()).then(() => {
             setTasks(todo.todos);
