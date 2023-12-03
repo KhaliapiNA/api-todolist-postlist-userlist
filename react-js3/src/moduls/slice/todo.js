@@ -1,21 +1,25 @@
 import {createSlice, createAsyncThunk} from "@reduxjs/toolkit";
+import axios from "axios";
 
+const initialState = {
+    isLoading: false,
+    todos: [],
+    error: ''
+}
 
-export const fetchTodos = createAsyncThunk('fetchTodos', async () => {
-    const response = await fetch('https://jsonplaceholder.typicode.com/todos');
-    return response.json();
+export const fetchTodos = createAsyncThunk('todo/fetchTodos', async () => {
+    return axios
+        .get('https://jsonplaceholder.typicode.com/todos')
+        .then(response => response.data.map((todo) => todo))
 });
 
 export const todoSlice = createSlice({
     name: 'todo',
-    initialState: {
-        data: null,
-        isError: false
-    },
+    initialState,
     extraReducers: (builder) => {
 
         builder.addCase(fetchTodos.fulfilled, (state, action) => {
-            state.data = action.payload;
+            state.todos = action.payload;
 
         });
 
